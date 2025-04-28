@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fukaken arduino</title>
+    <link rel="stylesheet" href="arduino_styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fukakenのarduino問題集ページです</h1>
+        <div>
+            <button id="ind_index"class="onoff" data-target="index_link">index</button><br>
+            <div id="index_link"class="pop">
+            <nav>
+                <ul>
+                    <li><a href="#home"><span class="index_moji">初めに</span></a></li><br>
+                    <li><a href="#toi1"><span class="index_moji">問題1;LEDちかちか</span></a></li><br>
+                    <li><a href="#toi2"><span class="index_moji">問題2:3つのLEDちかちか</span></a></li>
+                    <li><a href="#toi3"><span class="index_moji">問題3:押したら光る</span></a></li>
+                    <li><a href="#toi4"><span class="index_moji">問題4:押したら消える</span></a></li>
+                    <li><a href="#toi5"><span class="index_moji">問題5:シリアルで操作</span></a></li>
+                    <li><a href="#toi6"><span class="index_moji">問題6:超音波センサ</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+    </header>
+    <main>
+        <section id="home"class="link">
+            <h2>初めに</h2>
+            <p>ここではarduinoのプログラミングについて幾つかの問題を載せています。<br>
+                試す場合はtinkercadなどのシュミレーションできるwebサイトか，<br>
+                arduinoIDEをパソコンに入れて実機で動かしてください。<br>
+                (注)実機で試す場合は近くの先輩に回路が大丈夫か確認してもらってください。</p>
+        </section>
+
+        <section id="toi1"class="link">
+            <h2>問題1</h2>
+            <p>LEDを1秒ごとに点滅させてください</p>
+            <button class="onoff" data-target="gazo1">+回路例</button>
+            <div id="gazo1"class="kairo">
+                <img class="kairoimg" src="image\ledtikatika.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito1">プログラミング例</button>
+            <div id="kaito1"class="kaitocode">
+            <p>void setup()<br>
+            {<br>
+                pinMode(4, OUTPUT);<br>
+            }<br>
+
+            void loop()<br>
+            {<br>
+            digitalWrite(4, HIGH);<br>
+            delay(1000);<br>
+            digitalWrite(4, LOW);<br>
+            delay(1000);<br> 
+            }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+
+        <section id="toi2"class="link">
+            <h2>問題2</h2>
+            <p>3つのLEDを1秒ごとに被らないように点滅させて下さい<br>
+            例：赤1秒→青1秒→緑1秒</p>
+            <button class="onoff" data-target="gazo2">+回路例</button>
+            <div id="gazo2"class="kairo">
+                <img class="kairoimg" src="image\ledtikatikathree.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito2">プログラミング例</button>
+            <div id="kaito2"class="kaitocode">
+            <p>
+            void setup()<br>
+            {<br>
+            pinMode(3, OUTPUT);<br>
+            pinMode(6, OUTPUT);<br>
+            pinMode(9, OUTPUT);<br>
+            }<br>
+
+            void loop()<br>
+            {<br>
+            digitalWrite(3, HIGH);<br>
+            delay(1000); // Wait for 1000 millisecond(s)<br>
+            digitalWrite(3, LOW);<br>
+            digitalWrite(6, HIGH);<br>
+            delay(1000);<br>
+            digitalWrite(6, LOW);<br>
+            digitalWrite(9, HIGH);<br>
+            delay(1000);<br>
+            digitalWrite(9, LOW);<br>
+            }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+        <section id="toi3"class="link">
+            <h2>問題3</h2>
+            <p>ボタンを押したらLEDが光るようにして下さい</p>
+            <button class="onoff" data-target="gazo3">+回路例</button>
+            <div id="gazo3"class="kairo">
+                <img class="kairoimg" src="image\buttonled.png" type="image/png">
+                <p>ボタン部分の回路の意味を知りたかったらプルダウン抵抗で検索してみてください</p>
+            </div>
+            <button class="onoff" data-target="kaito3">プログラミング例</button>
+            <div id="kaito3"class="kaitocode">
+            <p>void setup()<br>
+                {<br>
+                    pinMode(3, OUTPUT);<br>
+                    pinMode(8, INPUT);<br>
+                }<br>
+                void loop()<br>
+                {<br>
+                    int flag=digitalRead(8);<br>
+                    if(flag==1){<br>
+                    digitalWrite(3,HIGH);<br>
+                }<br>
+                else{<br>
+                    digitalWrite(3,LOW);<br>
+                }<br>
+                    }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+        <section id="toi4"class="link">
+            <h2>問題4</h2>
+            <p>ボタンを押したらLEDが消えて，離したら光るようにしてください</p>
+            <button class="onoff" data-target="gazo4">+回路例</button>
+            <div id="gazo4"class="kairo">
+                <img class="kairoimg" src="image\pullup.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito4">プログラミング例</button>
+            <div id="kaito4"class="kaitocode">
+            <p>void setup()<br>
+                {<br>
+                    pinMode(3, OUTPUT);<br>
+                    pinMode(8, INPUT_PULLUP);<br>
+                }<br>
+                
+                void loop()<br>
+                {<br>
+                    int flag=digitalRead(8);<br>
+                    if(flag==1){<br>
+                    digitalWrite(3,HIGH);<br>
+                }<br>
+                    else{<br>
+                    digitalWrite(3,LOW);<br>
+                }
+                }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+        <section id="toi4"class="link">
+            <h2>問題4</h2>
+            <p>ボタンを押したらLEDが消えて，離したら光るようにしてください</p>
+            <button class="onoff" data-target="gazo4">+回路例</button>
+            <div id="gazo4"class="kairo">
+                <img class="kairoimg" src="image\pullup.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito4">プログラミング例</button>
+            <div id="kaito4"class="kaitocode">
+            <p>void setup()<br>
+                {<br>
+                    pinMode(3, OUTPUT);<br>
+                    pinMode(8, INPUT_PULLUP);<br>
+                }<br>
+                
+                void loop()<br>
+                {<br>
+                    int flag=digitalRead(8);<br>
+                    if(flag==1){<br>
+                    digitalWrite(3,HIGH);<br>
+                }<br>
+                    else{<br>
+                    digitalWrite(3,LOW);<br>
+                }
+                }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+        <section id="toi5"class="link">
+            <h2>問題5</h2>
+            <p>シリアル通信を使ってAが入力されたら光ってBが入力されたら消えるようにしてください
+            </p>
+            <button class="onoff" data-target="gazo5">+回路例</button>
+            <div id="gazo5"class="kairo">
+                <img class="kairoimg" src="image\serial.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito5">プログラミング例</button>
+            <div id="kaito5"class="kaitocode">
+            <p>void setup()<br>
+                {<br>
+                pinMode(3, OUTPUT);<br>
+                Serial.begin( 9600 );<br>
+                }<br>
+                
+                void loop()<br>
+                {<br>
+                char moji='C';<br>
+                if(Serial.available()>0){<br>
+                moji=Serial.read();<br>
+                }<br>
+                if(moji=='A'){<br>
+                    digitalWrite(3,HIGH);<br>
+                }<br>
+                else if(moji=='B'){<br>
+                    digitalWrite(3,LOW);<br>
+                }<br>
+                }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+        <section id="toi6"class="link">
+            <h2>問題6</h2>
+            <p>シリアル通信を使ってAが入力されたら光ってBが入力されたら消えるようにしてください
+            </p>
+            <button class="onoff" data-target="gazo6">+回路例</button>
+            <div id="gazo6"class="kairo">
+                <img class="kairoimg" src="image\serial.png" type="image/png">
+            </div>
+            <button class="onoff" data-target="kaito6">プログラミング例</button>
+            <div id="kaito6"class="kaitocode">
+            <p>void setup()<br>
+                {<br>
+                pinMode(3, OUTPUT);<br>
+                Serial.begin( 9600 );<br>
+                }<br>
+                
+                void loop()<br>
+                {<br>
+                char moji='C';<br>
+                if(Serial.available()>0){<br>
+                moji=Serial.read();<br>
+                }<br>
+                if(moji=='A'){<br>
+                    digitalWrite(3,HIGH);<br>
+                }<br>
+                else if(moji=='B'){<br>
+                    digitalWrite(3,LOW);<br>
+                }<br>
+                }</p><br>
+            <button class="copy"data-target="kaito1">コピー</button>
+            </div>
+            
+        </section>
+    </main>
+    <footer>
+        <p>これ以降はまた書き足します</p>
+    </footer>
+    <script src="arduino_scripts.js"></script>
+</body>
+</html>
