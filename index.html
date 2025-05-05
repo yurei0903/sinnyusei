@@ -56,9 +56,8 @@
             digitalWrite(4, LOW);<br>
             delay(1000);<br> 
             }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
-            
+            <button class="copy"data-target="kaito1">コピー</button>
         </section>
 
         <section id="toi2"class="link">
@@ -91,9 +90,8 @@
             delay(1000);<br>
             digitalWrite(9, LOW);<br>
             }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
-            
+            <button class="copy"data-target="kaito2">コピー</button>
         </section>
         <section id="toi3"class="link">
             <h2>問題3</h2>
@@ -120,8 +118,9 @@
                     digitalWrite(3,LOW);<br>
                 }<br>
                     }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
+            
             </div>
+            <button class="copy"data-target="kaito3">コピー</button>
             
         </section>
         <section id="toi4"class="link">
@@ -149,8 +148,8 @@
                     digitalWrite(3,LOW);<br>
                 }
                 }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
+            <button class="copy"data-target="kaito3">コピー</button>
             
         </section>
         <section id="toi4"class="link">
@@ -178,9 +177,8 @@
                     digitalWrite(3,LOW);<br>
                 }
                 }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
-            
+            <button class="copy"data-target="kaito4">コピー</button>
         </section>
         <section id="toi5"class="link">
             <h2>問題5</h2>
@@ -211,44 +209,94 @@
                     digitalWrite(3,LOW);<br>
                 }<br>
                 }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
+            <button class="copy"data-target="kaito1">コピー</button>
             
         </section>
         <section id="toi6"class="link">
             <h2>問題6</h2>
-            <p>シリアル通信を使ってAが入力されたら光ってBが入力されたら消えるようにしてください
+            <p>LEDの光をだんだん明るくなるようにしてください
             </p>
             <button class="onoff" data-target="gazo6">+回路例</button>
             <div id="gazo6"class="kairo">
-                <img class="kairoimg" src="image\serial.png" type="image/png">
+                <img class="kairoimg" src="image\ledtikatika.png" type="image/png">
             </div>
             <button class="onoff" data-target="kaito6">プログラミング例</button>
             <div id="kaito6"class="kaitocode">
             <p>void setup()<br>
-                {<br>
-                pinMode(3, OUTPUT);<br>
-                Serial.begin( 9600 );<br>
+                // LEDの明るさを段階的に変更するための変数<br>
+                int brightness = 0;<br>
+
+                // 明るさを増減させる量<br>
+                const int increment = 10;<br>
+
+                void setup() {<br>
+                // LEDピンを出力モードに設定<br>
+                    pinMode(ledPin, OUTPUT);<br>
+                }
+
+                void loop() {<br>
+                    // LEDの明るさを設定<br>
+                    analogWrite(ledPin, brightness);<br>
+
+                    // 明るさをインクリメント<br>
+                    brightness += increment;<br>
+
+                    // brightnessが0から255の間にあることを確認<br>
+                    if (brightness > 255) {<br>
+                            brightness = 0; // brightnessを0にリセット<br>
                 }<br>
-                
-                void loop()<br>
-                {<br>
-                char moji='C';<br>
-                if(Serial.available()>0){<br>
-                moji=Serial.read();<br>
-                }<br>
-                if(moji=='A'){<br>
-                    digitalWrite(3,HIGH);<br>
-                }<br>
-                else if(moji=='B'){<br>
-                    digitalWrite(3,LOW);<br>
-                }<br>
+
+                // 1秒（1000ミリ秒）待機<br>
+                delay(1000);<br>
+
                 }</p><br>
-            <button class="copy"data-target="kaito1">コピー</button>
             </div>
-            
+            <button class="copy"data-target="kaito6">コピー</button>
         </section>
+                    
+    </section>
+    <section id="toi7"class="link">
+        <h2>問題6</h2>
+        <p>LEDの光をだんだん明るくなるようにしてください
+        </p>
+        <button class="onoff" data-target="gazo7">+回路例</button>
+        <div id="gazo7"class="kairo">
+            <img class="kairoimg" src="image\botanpowupdown.png" type="image/png">
+        </div>
+        <button class="onoff" data-target="kaito6">プログラミング例</button>
+        <div id="kaito7"class="kaitocode">
+        <p>void setup(){<br>
+
+            pinMode(8,INPUT);<br>
+            pinMode(4,INPUT);<br>
+            }<br>
+            int upflag=0;<br>
+            int downflag=0;<br>
+            int power=0;<br>
+            void loop(){<br>
+            
+            
+            upflag=digitalRead(8);<br>
+            downflag=digitalRead(4);<br>
+            if(upflag==HIGH){<br>
+                if(power<250){<br>
+                    power+=10;<br>
+                }<br>
+            }<br>
+            if(downflag==HIGH){<br>
+            if(power>0){<br>
+                power-=10;<br>
+            }<br>
+            }<br>
+            analogWrite(11,power);<br>
+            delay(500);<br>
+            }</p><br>
+        </div>
+        <button class="copy"data-target="kaito7">コピー</button>
+    </section>
     </main>
+
     <footer>
         <p>これ以降はまた書き足します</p>
     </footer>

@@ -19,9 +19,9 @@ copy_button.forEach((element) => {
         const targetId = this.getAttribute('data-target');
         const targetElement = document.getElementById(targetId);
         navigator.clipboard.writeText(targetElement.innerText).then(() => {
-            alert("Code copied to clipboard!");
+            alert("コピーできました！");
         }).catch(err => {
-            console.error('Error copying text: ', err);
+            console.error('コピーできませんでした．先輩に伝えてください ', err);
         });
     });
 });
